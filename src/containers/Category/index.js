@@ -18,7 +18,7 @@ import {
   IoIosArrowDown,
   IoIosAdd,
   IoIosTrash,
-  IoIosCloudUpload
+  IoIosCloudUpload,
 } from "react-icons/io";
 import UpdateCategoriesModal from "./components/UpdateCategoriesModal";
 import AddCategoryModal from "./components/AddCategoryModal";
@@ -52,6 +52,7 @@ const Category = (props) => {
 
   //to show
   const handleShow = () => setShow(true);
+
   //to render categories
   const renderCategories = (categories) => {
     let myCategories = [];
@@ -67,13 +68,14 @@ const Category = (props) => {
     return myCategories;
   };
 
-  //to create an]new category
+  //to create an new category
   const createCategoryList = (categories, options = []) => {
     for (let category of categories) {
       options.push({
         value: category._id,
         name: category.name,
         parentId: category.parentId,
+        type:category.type
       });
       if (category.children.length > 0) {
         createCategoryList(category.children, options);
@@ -176,6 +178,7 @@ const Category = (props) => {
         }
       });
     }
+    setDeleteCategoryModal(false);
   };
 
   const renderDeleteCategoryModal = () => {
@@ -223,15 +226,18 @@ const Category = (props) => {
               <div className="actionBtnContainer">
                 <span>Action's to be Perform: </span>
                 <button onClick={handleShow}>
-                  <IoIosAdd />&nbsp;
+                  <IoIosAdd />
+                  &nbsp;
                   <span>Add</span>
                 </button>
                 <button onClick={deleteCategory}>
-                  <IoIosTrash />&nbsp;
+                  <IoIosTrash />
+                  &nbsp;
                   <span>Delete</span>
                 </button>
                 <button onClick={updateCategory}>
-                  <IoIosCloudUpload />&nbsp;
+                  <IoIosCloudUpload />
+                  &nbsp;
                   <span>Edit</span>
                 </button>
               </div>
