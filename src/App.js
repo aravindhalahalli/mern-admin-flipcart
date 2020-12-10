@@ -16,13 +16,16 @@ function App() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  //component didmount/component did update
+
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
-    // dispatch(getAllCategory());
-    dispatch(getInitialData());
-  }, []);
+    if (auth.authenticate) {
+      dispatch(getInitialData());
+    }
+  }, [auth.authenticate]);
 
   return (
     <div className="App">

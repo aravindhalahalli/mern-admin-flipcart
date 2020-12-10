@@ -81,6 +81,8 @@ export default (state = initState, action) => {
     case categoryConstants.ADD_NEW_CATEGORIES_FAILURE:
       state = {
         ...initState,
+        loading:false,
+        error:action.payload.error
       };
       break;
     case categoryConstants.UPDATE_CATEGORIES_REQUEST:
